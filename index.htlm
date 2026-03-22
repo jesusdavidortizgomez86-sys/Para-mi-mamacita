@@ -1,0 +1,204 @@
+"}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para mi mujercita 💛</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background: linear-gradient(to top, #0b1c2d, #1f3a5f, #2c5c8a);
+  overflow:hidden;
+  color:white;
+  font-family:Georgia, cursive;
+  text-align:center;
+}
+
+/* ESTRELLAS /
+.star{
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+  0%,100%{opacity:0.2;}
+  50%{opacity:1;}
+}
+
+/ BOTÓN /
+#start{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+
+button{
+  font-size:25px;
+  padding:15px 30px;
+  background:linear-gradient(45deg,#ffd700,#ffcc00);
+  border:none;
+  border-radius:15px;
+  cursor:pointer;
+  box-shadow:0 0 20px #ffd700;
+}
+
+/ ESCENA /
+#scene{display:none;}
+
+/ TÍTULO /
+#title{
+  position:absolute;
+  top:20%;
+  width:100%;
+  font-size:38px;
+  opacity:0;
+  transition:opacity 2s;
+}
+
+/ MENSAJE /
+#message{
+  position:absolute;
+  top:55%;
+  width:100%;
+  transform:translateY(-50%);
+  font-size:26px;
+  padding:20px;
+  white-space: pre-line;
+}
+
+/ TE AMO FINAL /
+#final{
+  position:absolute;
+  top:50%;
+  width:100%;
+  transform:translateY(-50%) scale(0);
+  font-size:80px;
+  font-weight:bold;
+  color:#ff4d6d;
+  text-shadow:0 0 20px red, 0 0 40px pink;
+  transition:transform 1s ease;
+}
+
+/ FLORES /
+.flower{
+  position:absolute;
+  pointer-events:none;
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp{
+  0%{
+    transform:translateY(110vh) scale(0.5) rotate(0deg);
+    opacity:0;
+  }
+  20%{opacity:1;}
+  50%{
+    transform:translateY(50vh) scale(1.2) rotate(180deg);
+  }
+  100%{
+    transform:translateY(-10vh) scale(0.7) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/ PROFUNDIDAD /
+.near{ filter: blur(0px); }
+.mid{ filter: blur(1px); }
+.far{ filter: blur(2px); }
+</style>
+</head>
+
+<body>
+
+<div id="start">
+  <button onclick="start()">Presiona aquí 💛</button>
+</div>
+
+<div id="scene">
+  <div id="title">Para mi mujercita 💛</div>
+  <div id="message"></div>
+  <div id="final">TE AMO ❤️</div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_115b9b0c2b.mp3?filename=romantic-background-110597.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const texto = "Recuerda que te amo con todo mi corazón,\nmi amotito ❤️";
+let i = 0;
+
+/ ESCRITURA */
+function escribir(){
+  if(i < texto.length){
+    document.getElementById("message").innerHTML += texto.charAt(i);
+    i++;
+    setTimeout(escribir, 40);
+  }else{
+    // CUANDO TERMINA → mostrar TE AMO gigante
+    setTimeout(()=>{
+      document.getElementById("final").style.transform="translateY(-50%) scale(1)";
+    },1000);
+  }
+}
+
+function start(){
+  document.getElementById("start").style.display="none";
+  document.getElementById("scene").style.display="block";
+
+  document.getElementById("music").play();
+
+  let title = document.getElementById("title");
+  title.style.opacity = 1;
+
+  setTimeout(()=>{
+    escribir();
+  },2500);
+
+  // FLORES
+  setInterval(()=>{
+    let f = document.createElement("div");
+    f.className="flower";
+    f.innerHTML="🌼";
+
+    let depth = Math.random();
+    if(depth < 0.33){
+      f.classList.add("far");
+      f.style.fontSize="25px";
+    }else if(depth < 0.66){
+      f.classList.add("mid");
+      f.style.fontSize="35px";
+    }else{
+      f.classList.add("near");
+      f.style.fontSize="45px";
+    }
+
+    f.style.left=Math.random()*100+"%";
+    f.style.animationDuration=(5+Math.random()*3)+"s";
+
+    document.body.appendChild(f);
+
+    setTimeout(()=>{f.remove();},8000);
+  },150);
+
+  // ESTRELLAS
+  for(let i=0;i<60;i++){
+    let s = document.createElement("div");
+    s.className="star";
+    s.style.left=Math.random()*100+"%";
+    s.style.top=Math.random()*100+"%";
+    s.style.animationDuration=(1+Math.random()*2)+"s";
+    document.body.appendChild(s);
+  }
+}
+</script>
+
+</body>
+</h
