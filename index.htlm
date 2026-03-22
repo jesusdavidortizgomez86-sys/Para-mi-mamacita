@@ -1,9 +1,8 @@
-"}
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para mi mujercita 💛</title>
+<title>Para mi mamacita 💛</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -108,7 +107,7 @@ button{
   }
 }
 
-/ PROFUNDIDAD /
+/ PROFUNDIDAD */
 .near{ filter: blur(0px); }
 .mid{ filter: blur(1px); }
 .far{ filter: blur(2px); }
@@ -122,7 +121,7 @@ button{
 </div>
 
 <div id="scene">
-  <div id="title">Para mi mujercita 💛</div>
+  <div id="title">Para mi mamacita 💛</div>
   <div id="message"></div>
   <div id="final">TE AMO ❤️</div>
 </div>
@@ -135,14 +134,12 @@ button{
 const texto = "Recuerda que te amo con todo mi corazón,\nmi amotito ❤️";
 let i = 0;
 
-/ ESCRITURA */
 function escribir(){
   if(i < texto.length){
     document.getElementById("message").innerHTML += texto.charAt(i);
     i++;
     setTimeout(escribir, 40);
   }else{
-    // CUANDO TERMINA → mostrar TE AMO gigante
     setTimeout(()=>{
       document.getElementById("final").style.transform="translateY(-50%) scale(1)";
     },1000);
@@ -162,7 +159,6 @@ function start(){
     escribir();
   },2500);
 
-  // FLORES
   setInterval(()=>{
     let f = document.createElement("div");
     f.className="flower";
@@ -188,7 +184,6 @@ function start(){
     setTimeout(()=>{f.remove();},8000);
   },150);
 
-  // ESTRELLAS
   for(let i=0;i<60;i++){
     let s = document.createElement("div");
     s.className="star";
@@ -201,4 +196,4 @@ function start(){
 </script>
 
 </body>
-</h
+</html
